@@ -34,13 +34,13 @@ REST URI's should be thought of as a "path to a resource" or a "noun" in the sys
 This is pretty much the only set-in-stone standard for a REST API that I would say has universal acceptance. Deviations from this basic tenet should only arise when your resources have functionality that goes beyond HTTP verbs, such as a "submit payment" or "calculate" function.  (more on that later)
 
 #### HTTP Verbs
-_OPTIONS_
+_OPTIONS_  
 Requests should return a list of links available around a given resource. This could include whatever the organization would like here, be it only GET resource links or POST, PUT, DELETE, etc. If you decided against returning hypermedia links in your responses, an OPTIONS request probably isn't neccessary. One could say it is...optional.
 
-_HEAD_
+_HEAD_  
 Functionally similar to a GET request, but without the body returned. Useful when used to obtain the ETag of a resource, or returning content types supported by the API. Supporting a HEAD request is also not necessary, but can be useful if you support many custom content types, for example.
 
-_GET_
+_GET_  
 GET requests should be in the form: `/path/{id}/to/{id}/resource/{id}`
 For the case where you have other ways of identifying your data, such as git repositories, you could do something like: `/repos/:owner/:repo`
 Where in the Github case, you don't have the resource type followed by an id, you have a customer-specific way of drilling into your data.
@@ -60,10 +60,10 @@ There is much debate online about the "proper" way to perform pagination in a RE
 If you have rather large resources in your application, supporting partial selection of a resource might make sense. This allows clients to select which properties of the resource to include in the response in order to limit the amount of data sent over the wire.
 ex: `/kennel/123/dog/1234?fields=name,color,location`
 
-_POST_
+_POST_  
 It is generally accepted that a post will only create a resource.  The full data of the resource is expected in the body.  Whether that includes complete nested data is up to the organization, i.e. you may require subsequent API calls to update nested data because it doesn't logically fit into one transaction. I have seen APIs where a POST request will also update data, but I think that violates the basic HTTP verb standard.  Keep POSTS strictly for create operations and have update operations sent via a...
 
-_PUT_ and _PATCH_
+_PUT_ and _PATCH_  
 The PUT request should be viewed as updating a full resource, i.e. a complete replacement. In the past, a PUT request has also been used for selective uodates. It is generally assumed that selected updates will be handled by a PATCH request going forward. PATCH is not yet the standard for selective updates, but is on it's way, so start using it now and you'll likely avoid confusion in the future.
 
 More on selective updates...A PATCH request will only update what it is given, i.e. it will be a set of deltas to apply to the data. It can be in a few forms:
