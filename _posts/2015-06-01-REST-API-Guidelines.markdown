@@ -78,7 +78,7 @@ More on selective updates...A PATCH request will only update what it is given, i
 
 _TODO: Updating Collections:_ What happens when return codes should be different for each member of a collection?
 
-_Other Verbs_
+_Other Verbs_  
 If you have functionality in your application that falls outside the standard HTTP verbs, such as a "submit payment" or "calculate" function, it is probably best to use a POST request. I suggest POST because I think of this as "creating" a new instance of the function.  You could decide to use PUT.  It doesn't matter as long as it is well-documented.
 
 What to do on a “submit” example?
@@ -91,35 +91,35 @@ A URL mapping such as this allows for cleaner code on the back-end when using a 
 #### Server Success Codes
 200 - OK
 
-201 – Created
+201 – Created  
 Server has successfully created a new resource as a result of a POST request.  The new resource's location should be returned in the Location header.
 
-202 – Accepted
+202 – Accepted  
 Server has accepted the request, but it is not yet complete.  This status is useful for long-running tasks that may need to contact 3rd party resources, for example.  The response should contain a link pointing to a status monitor. Once the long-running create process has finished, the response from the status monitor should include the same headers and response body had the request been fulfilled synchronously.
 
 #### Client Error Status Codes
 If a client receives a 4** status code, that means the onus is on the client to fix a subsequent request.
 
-400 – Bad request
+400 – Bad request  
 The request could not be understood by the server due to malformed syntax. The client should not repeat the request without modification.
 
-401 – Unauthorized
+401 – Unauthorized  
 The response could include a `WWW-Authenticate` header in order to convey to the client what authentication schemes are supported by the server. If the request already included Authorization credentials, then the 401 response indicates that authorization has been refused for those credentials.
 
-403 – Forbidden
+403 – Forbidden  
 Server has understood the request, but refuses to honor it. Client should not repeat the request without modification.
 
-404 – Not Found
+404 – Not Found  
 The server was unable to find the URI resource.
 
-405 – Method Not Allowed
+405 – Method Not Allowed  
 The method specified is not allowed for the resource identified by the request URI. The response should include an `Allow` header containing a list of valid methods for the requested resource.
 
-406 – Not Acceptable
+406 – Not Acceptable  
 The server is unable to match the client's `Accept` header. Depending on your API, it could be more reasonable to default to JSON. As always, it depends on the goals of the organization.  
 
 #### Server Error Status Codes
-500 – Internal Server Error
+500 – Internal Server Error  
 This is an error from which the server cannot recover.  In theory, the client can do nothing to the request that will alter the result.  This is pretty much a catch-all for any server issue, such as database problems. All the client can do is wait and try again.
 
 ### Versioning a REST API
