@@ -3,20 +3,20 @@ layout: post
 title: External REST API Guidelines
 date:   2015-06-01 13:45:44
 ---
-When creating a REST API it is important to remember to do what works best for the organization.  There are no true standards, only best prectices and guidelines.  It is also important to take into consideration if there will be external consumers of the API.  External-facing APIs should be a bit more stringent in adhering to best-practices since there is basic set of expectations that most users of APIs have come to expect.  This will create an API that will feel familiar to users and avoid unnecessary confusion.  Given that, there is great variance among even the most popular and widely-used APIs so keep that in mind when meetigs devolve into ideological warfare; It probably doesn't matter, as long as the API is clean, logical, and well-documented.
+When creating a REST API it is important to remember to do what works best for the organization.  There are no true standards, only best practices and guidelines.  It is also important to take into consideration if there will be external consumers of the API.  External-facing APIs should be a bit more stringent in adhering to best-practices since there is basic set of expectations that most users of APIs have come to expect.  This will create an API that will feel familiar to users and avoid unnecessary confusion.  Given that, there is great variance among even the most popular and widely-used APIs so keep that in mind when meetigs devolve into ideological warfare; It probably doesn't matter, as long as the API is clean, logical, and well-documented.
 
-This post is merely a compilation of concepts to keep in mind when creating REST APIs. Some of these should be considered all of the time, while others should only be used when they support the needs of the organization.  This is not a definitive or comprehensive list.  It is, as the title suggests, a set of guidelines that I have grown to like during my travels as a software engineer. Also of note is that I do not indend this to be an "original" document.  It is a collection of excerpts I have jotted down over the years, taken from various sources and embelished upon. I am not misrepresenting this as a whole, as my own. It's probably about 60-70% other people's work. I have compiled a collection of thoughts that together, make up the guidelines that I think are the most importent to consider.
+This post is merely a compilation of concepts to keep in mind when creating REST APIs. Some of these should be considered all of the time, while others should only be used when they support the needs of the organization.  This is not a definitive or comprehensive list.  It is, as the title suggests, a set of guidelines that I have grown to like during my travels as a software engineer and API designer. Also of note is that I do not indend this to be an "original" document.  It is a collection of excerpts I have jotted down over the years, taken from various sources and embelished upon. I am not misrepresenting this as a whole, as my own. It's probably about 60-70% other people's work. This is a collection of thoughts that together, make up the guidelines that I think are the most importent to consider when desiging a REST API.
 
 ### Main Goals to Consider When Designing a REST API
 - Keep the client's perspective always at the forefront
 - Hypermedia links (HATEOAS)
     - Canonical URL for navigation
     - Link traversal
-    - I'm still not sold that there is great value from a programmatic perspective, but I have found link traversal very useful when manually browsing through a public API, such as Github. Think of it at the very least, as an extension of documentation.
+    - I'm still not sold that there is great value from a programmatic perspective, but I have found link traversal very useful when manually browsing through a public API, such as Github. Think of using these links, at the very least, as an extension of documentation.
 - Content types to support
     - content is negotiated through headers `Accept` and `Content-type`
-    - JSON, why even bother with XML?
-    - If you need other content types, knock yourself out. Document it!
+    - use JSON...why even bother with XML?
+        - If you need other content types, knock yourself out. Document it!
 - Use as much of emerging standards as possible
     - Although not necessary, this will make some managers happier about their endeavors
     - [HAL](http://stateless.co/hal_specification.html)
