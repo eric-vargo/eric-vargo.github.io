@@ -128,6 +128,7 @@ This is an error from which the server cannot recover.  In theory, the client ca
 We can't expect clients to upgrade every time we make a change. Backward compatibility is paramount for any REST API (unless, of course, you are Facebook). It's a good idea to force clients to specify the version in all requests.
 
 In versioning a REST API, there are generally a few ways to do it:
+
 - put the version somewhere in the URL
 - put the version in an HTTP header
 - put the version in a parameter, such as ?v=1.0
@@ -143,6 +144,10 @@ The tools used on the server side to process your REST APIs also should factor i
 #### Versioning Domain Objects
 You can avoid this type of granularity by tying all domain data versioning to URLs, but if you must have this level of granularity, you can determine the data version by creating custom media types.  The server can set what it produces, such as `application/json` or `application/com.yourcompany.person.v1+json`
 You will then have a method that returns an object in your code called PersonV1. V2 returns PersonV2, etc...
+
+Since originally writing this post, I have come across a good solution to the domain object versioning issue.  Stripe has implemented a pretty good solution, which they apparently lifted from Facebook.  They solve this by using "gates" which looks a lot like an "event sourcing" type of approach where the incoming data is run through a set of these transformation gates based on the version.  After running through the gates, the data will be in a format able to be understood by the current API.
+
+The first 18 minutes of this presentation goes over Stripe's API evolution: [The Architecture that Helps Stripe Move Faster](https://www.infoq.com/presentations/stripe-api-pci)
 
 ### HATEOAS (one pronounciation: Hey-toes)
 “Hypermedia As The Engine Of Application State”
