@@ -102,9 +102,7 @@ I had to setup the S3 bucket to serve static web pages in order to be able to us
         }]
     }
 
-Relevant documentation in Gradle:
-
-[https://docs.gradle.org/current/userguide/publishing_maven.html](https://docs.gradle.org/current/userguide/publishing_maven.html)
-
+Relevant documentation in Gradle:  
+[https://docs.gradle.org/current/userguide/publishing_maven.html](https://docs.gradle.org/current/userguide/publishing_maven.html)  
 [https://docs.gradle.org/current/userguide/dependency_management.html#sec:supported_transport_protocol](https://docs.gradle.org/current/userguide/dependency_management.html#sec:supported_transport_protocols)
 
