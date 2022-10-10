@@ -8,7 +8,7 @@ layout: default
 
   <ul class="post-list">
     {% for post in site.posts %}
-     {% if post.hideme.nil? or !post.hideme %}
+     {% unless post.hideme %}
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
