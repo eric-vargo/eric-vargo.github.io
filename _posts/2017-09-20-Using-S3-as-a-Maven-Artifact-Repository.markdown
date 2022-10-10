@@ -86,25 +86,23 @@ Getting artifacts from the S3 Repository
 I had to setup the S3 bucket to serve static web pages in order to be able to use it as a maven repository.  You can then use a bucket policy to restrict access in any number of ways.  For starters just to get the ball rolling, I restricted access to our office IP address:
 
     {
-    	"Version": "2012-10-17",
-    	"Id": "some-id-here",
-    	"Statement": [
-    		{
-    			"Sid": "IPAllow",
-    			"Effect": "Allow",
-    			"Principal": "*",
-    			"Action": "s3:*",
-    			"Resource": "arn:aws:s3:::myProjectNameHere-artifacts/*",
-    			"Condition": {
-    				"IpAddress": {
-    					"aws:SourceIp": “999.999.999.999/32"
-    				}
-    			}
-    		}
-    	]
+        "Version": "2012-10-17",
+        "Id": "some-id-here",
+        "Statement": [{
+            "Sid": "IPAllow",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::myProjectNameHere-artifacts/*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": “999.999.999.999/32"
+                }
+            }
+        }]
     }
 
 Relevant documentation in Gradle:
-https://docs.gradle.org/current/userguide/publishing_maven.html
-https://docs.gradle.org/current/userguide/dependency_management.html#sec:supported_transport_protocols
+(https://docs.gradle.org/current/userguide/publishing_maven.html)
+(https://docs.gradle.org/current/userguide/dependency_management.html#sec:supported_transport_protocols)
 
