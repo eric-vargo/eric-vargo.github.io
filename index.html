@@ -8,7 +8,7 @@ layout: default
 
   <ul class="post-list">
     {% for post in site.posts %}
-     {{ post.categories }} | {{ post.hideme }}
+     {% if post.hideme != "true" %}
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -17,6 +17,7 @@ layout: default
         </h2>
         {{ post.excerpt }}
       </li>
+     {% endif %}
     {% endfor %}
   </ul>
 
