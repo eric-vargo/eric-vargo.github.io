@@ -3,7 +3,7 @@ layout: post
 title:  "Using S3 as a Maven Artifact Repository"
 date:   2019-02-11 16:02:54
 ---
-These are my notes on setting up S3 as an artifact repository. Why do this?  Well, because everyone hates Nexus.  It's clunky and it just smells like an overly heavyweight solution to a fairly straightforward problem.  S3 exists so why not use what is readily available instead of running a loval Nexus repository?
+These are my notes on setting up S3 as an artifact repository. Why do this?  Well, because everyone hates Nexus.  It's clunky and it just smells like an overly heavyweight solution to a fairly straightforward problem.  S3 exists so why not use what is readily available instead of running a local Nexus repository?
 
 Configuring gradle to use the “maven-publish” plugin was pretty easy.  It involved creating a named publication to the project’s “publishing.publications” container (“myProjectNameHere” in the example below).  Here is a sample configuration that publishes the boot jar artifact to an S3 repository:
 
