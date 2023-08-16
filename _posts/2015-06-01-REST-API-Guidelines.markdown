@@ -45,7 +45,7 @@ GET requests should be in the form: `/path/{id}/to/{id}/resource/{id}`
 For the case where you have other ways of identifying your data, such as git repositories, you could do something like: `/repos/:owner/:repo`
 Where in the Github case, you don't have the resource type followed by an id, you have a customer-specific way of drilling into your data.
 
-All GET requests should return an ETag. This ETag ensures against a concurrent modification problem.
+GET requests can return an ETag as a resource optimization or if potential collisions are an issue. The ETag ensures against a concurrent modification problem with multiple users using a GET request for later updating.
 A client can check for an updated copy of a resource by giving the `If-None-Match header` along with the request and sending the ETag value.  This will return the resource only if the version has changed since the client's ETag. If the resource hasn't changed, a 304 response code should be returned.
 
 Specifying a range of resources to return on a GET request for pagination can be done in a few ways:
@@ -92,7 +92,7 @@ A URL mapping such as this allows for cleaner code on the back-end when using a 
 200 - OK
 
 201 – Created  
-Server has successfully created a new resource as a result of a POST request.  The new resource's location should be returned in the Location header.
+Server has successfully created a new resource as a result of a POST/PUT/PATCH request.  The new resource's location should be returned in the Location header.
 
 202 – Accepted  
 Server has accepted the request, but it is not yet complete.  This status is useful for long-running tasks that may need to contact 3rd party resources, for example.  The response should contain a link pointing to a status monitor. Once the long-running create process has finished, the response from the status monitor should include the same headers and response body had the request been fulfilled synchronously.
@@ -133,7 +133,7 @@ In versioning a REST API, there are generally a few ways to do it:
 - put the version in an HTTP header
 - put the version in a parameter, such as ?v=1.0
 
-It's easy to add another “V2” URL to have another version of the APIs, but I believe this to be more problematic than the header solution for one key reason; This creates a complete set of URLs for a particular version when you might only be changing a small percentage of them. Granted, this may be desirable from an organizational standpoint, but I think the better approach is to use the HTTP header solution.  I think having a verion in the URL forces a client to write a bit more code to maintain URLs through string concatenation. It's cleaner to set the header to a value.
+It's easy to add another “V2” URL to have another version of the APIs, but I believe this to be more problematic than the header solution for one key reason; This creates a complete set of URLs for a particular version when you might only be changing a small percentage of them. Granted, this may be desirable from an organizational standpoint, but I think the better approach is to use the HTTP header solution.  I think having a version in the URL forces a client to write a bit more code to maintain URLs through string concatenation. It's cleaner to set the header to a value.
 
 Twilio had a different approach to this that I thought was clever. They force a user to send a date along with the request, and they will use the version of the API in place for that date and time.  So, a client will use the date they developed against the API. This prevents the client from having to explicitly know what version they are coding against.
 
