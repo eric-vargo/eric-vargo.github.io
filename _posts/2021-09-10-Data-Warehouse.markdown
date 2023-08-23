@@ -1,12 +1,13 @@
 ---
 layout: post
-title:  "Migrating Analytics Data into a Data Warehouse"
+title:  "Migrating to an Analytics Data Warehouse without Disrupting a Live Application in Production 
+or: How I Learned to Stop Worrying and Love Feature Flags"
 date:   2021-09-10 12:45:01
 ---
+The flagship application at one of my former employers used event-sourcing to control application flow by tracking all user movements and application changes. This data was stored in a simple collection in a Mongo database because that was our main database server and it was very easy to query and retrieve all needed data.  Not only did this data track user movements, we also source analytics from it for viewing at a later point in time.  This was a trade-off we made early on while creating the MVP so we could reduce time needed to go to market.  We knew we would eventually need a data warehouse to support all current and future reporting requirements.  The problem we had was we had an application that was live and generating revenue so any migration could not disrupt the business.  We need a solution that could run alongside the current application then would allow us to change over to the new warehouse when it was fully tested and ready to release.
+
 # WORK IN PROGRESS
 ## Creating an Analytics Data Warehouse to Improve Application Scalability and Data Integrity
-
-The flagship application at one of my former employers was a streaming video presentation application (think of a CEO making an online presentation to the entire company using streaming video, slides, polls, surveys, Q&A, etc…).  It used event-sourcing to control the presentation flow and track all viewer data. This data was stored in a collection in a Mongo database.  The presentation uses it primarily to build out state of the presentation for both producers and viewers but we also source presentation analytics from it.  Initially, due to time constraints, we implemented a temporary solution for our analytics offering, knowing we would need to replace it with something more robust and scalable.  Using the event-sourcing data bits, we were building data structures on the fly and further processing the data by searching, filtering, sorting, then returning it to the end user.  We had to bring all the data into memory in order to filter out what was needed.  As a result of this, it did not perform well to our performance measurements and it was also very buggy.  We knew we needed to replace this shortly after going live with the application once we had more time.
 
 To solve these issues, I spearheaded a project to create an analytics data warehouse that would allow us to scale our business by supporting presentation analytics that far exceed our current viewership.  This is the outline of the plan I came up with (leaving out a lot of the details for the sake of brevity):
 
