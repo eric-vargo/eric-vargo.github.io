@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Migrating to a Data Warehouse without Disrupting a Live Application 
+title:  "Migrating to a Data Warehouse without Disrupting a Live Application   
 or: How I Learned to Stop Worrying and Love Feature Flags"
 date:   2021-09-10 12:45:01
 ---
